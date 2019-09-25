@@ -1,16 +1,17 @@
-let data = require("./data");
+const data = require("./data");
 
-let getUserById = (userId) => {
-    return data.users.find(user => user.id === userId)
+var getUserById = (userId, cb) => {
+    setTimeout(() => {
+        const user = data.users.find(user => user.id === userId)
+        cb(user)
+    }, 150)
 }
 
-let getPostsForUser = (userId) => {
-    return data.posts.filter(function (p) {
-        return p.createdBy == userId
-    })
+var getPostsForUser = (userId, cb) => {
+    setTimeout(() => {
+        const posts = data.posts.filter(post => post.createdBy === userId)
+        cb(posts)
+    }, 150)
 }
-
-setTimeout(getUserById, 150)
-setTimeout(getPostsForUser, 150)
 
 module.exports = {getUserById, getPostsForUser}
